@@ -16,4 +16,4 @@ jobs:
           username: lakhansamani
           key: ${{ secrets.GCP_PRIVATE_KEY }}
           port: 22
-          script: /bin/sh deploy.sh ${{ GITHUB_REF }}
+          script: /bin/sh deploy.sh ${GITHUB_REF}
