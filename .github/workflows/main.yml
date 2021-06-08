@@ -1,0 +1,19 @@
+name: GitHub Actions Demo
+on:
+  release:
+    types: [released]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
+      - name: executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.GCP_IP }}
+          username: lakhansamani
+          key: ${{ secrets.GCP_PRIVATE_KEY }}
+          port: 22
+          script: /bin/sh deploy.sh ${{ steps.branch_name.outputs.VERSION }}
