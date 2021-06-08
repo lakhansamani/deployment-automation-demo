@@ -1,4 +1,4 @@
-# Automate the deployment of servers in 6 steps
+# Automate server deployment with systemd & github actions
 
 This repository contains the code used to show how to deploy a NodeJS HTTP server as system process and how to automate it!
 
