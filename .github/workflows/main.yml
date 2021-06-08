@@ -8,7 +8,10 @@ jobs:
     steps:
       - name: Get the version
         id: get_version
-        run: echo ${GITHUB_REF}
+        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+      - name: Debug version
+        id: Debug
+        run: echo ${steps.get_version.outputs.VERSION}
       - name: executing remote ssh commands using ssh key
         uses: appleboy/ssh-action@master
         with:
@@ -16,4 +19,4 @@ jobs:
           username: lakhansamani
           key: ${{ secrets.GCP_PRIVATE_KEY }}
           port: 22
-          script: /bin/sh deploy.sh ${GITHUB_REF}
+          script: /bin/sh deploy.sh ${steps.get_version.outputs.VERSION}
