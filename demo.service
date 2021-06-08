@@ -1,0 +1,12 @@
+[Unit]
+Description=demo
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=5
+ExecStart=/usr/bin/node /home/lakhansamani/demo/index.js
+WorkingDirectory=/home/lakhansamani/demo/
+
+[Install]
+WantedBy=multi-user.target
